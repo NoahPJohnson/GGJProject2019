@@ -18,6 +18,7 @@ public class RoomTriggerScript : MonoBehaviour {
         fogOfWar = transform.parent.GetChild(1);
         doors = transform.parent.GetChild(2);
         enemySpawner = transform.parent.GetChild(3);
+        fogOfWar.gameObject.SetActive(true);
         doors.gameObject.SetActive(false);	
 	}
 	
