@@ -40,6 +40,7 @@ public class MusicManager : MonoBehaviour
 	
 	void Update ()
     {
+        //FMODUnity.RuntimeManager.AttachInstanceToGameObject(musicEvent, transform,GetComponent<Rigidbody>());
         //get location from home, exit
         currentDistanceTo = Vector2.Distance(player.position, destination.position);
         currentDistanceFrom = Vector2.Distance(player.position, home.position);

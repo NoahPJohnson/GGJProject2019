@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] Animator anim;
+    bool walking;
     [SerializeField] GameObject HUDReference;
 
     bool venturing = false;
@@ -28,9 +30,15 @@ public class PlayerMovement : MonoBehaviour
     ArrayList enemyAttacksList = new ArrayList(); 
     ArrayList damageCoroutineList = new ArrayList();
 
+    private void Awake()
+    {
+        anim = transform.GetChild(0).GetComponent<Animator>();
+    }
+
     // Use this for initialization
     void Start ()
     {
+        moveSpeed = 8;
         damageIndex = 0;
         playerRigidbody = GetComponent<Rigidbody2D>();
         enemyAttacksList.Add(null);
@@ -43,6 +51,14 @@ public class PlayerMovement : MonoBehaviour
         inputVector.Set(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         moveVector.Set(inputVector.x * hCollision, inputVector.y * vCollision);
         playerRigidbody.MovePosition(playerRigidbody.position + (moveVector * moveSpeed) * Time.deltaTime);
+        if (inputVector.magnitude > 0.1)
+        {
+            anim.SetBool("IsWalking", true);
+        }
+        else
+        {
+            anim.SetBool("IsWalking", false);
+        }
         //playerRigidbody.MovePosition(playerRigidbody.position + (new Vector2(0, -25)) * Time.deltaTime);
             //transform.Translate(moveVector * moveSpeed * Time.deltaTime);
 

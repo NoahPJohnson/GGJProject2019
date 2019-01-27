@@ -1,0 +1,13 @@
+{ddfc2223-9453-466e-8345-4689ac78b305} event:/Music/Background Music
+{945f277a-bc9c-4827-b22e-3c7f6d53d8ab} event:/SFXs/Crawler Death
+{a85b3082-dc36-4437-b3d6-c6428be4a1ed} event:/SFXs/Crawler Hurt
+{40783b33-759a-4777-a974-bb02b041d118} event:/SFXs/Player Death
+{3be3378d-7fba-4074-b0c4-8526c3171ea9} event:/SFXs/Player Hurt
+{fc81d905-f103-41d7-8e04-1246d0b7190d} event:/SFXs/Regular Shot
+{29be44ff-8d63-42ba-a40a-bda4b6a04f01} event:/SFXs/Ricochet
+{06ab1982-7827-4c91-af25-32031375e6d9} event:/SFXs/Spread Shot
+{ed362f1f-0417-41b7-b95c-882850dd021e} event:/SFXs/Zombie Death
+{c283f523-f32d-433f-96b3-3ae088c6bd04} event:/SFXs/Zombie Hurt
+{ad3a4d29-e20a-4004-bca6-0d3ff0ff4b0e} bus:/
+{5d2f524d-35f0-4161-880c-7f10560007fc} bus:/Reverb
+{df0ac42e-8204-4d2f-b19c-548aaa7cb731} bank:/Master Bank

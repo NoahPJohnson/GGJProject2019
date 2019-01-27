@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class EnemyDamageScript : MonoBehaviour
 {
+    Animator anim;
     [SerializeField] float enemyMaxHP = 100;
     [SerializeField] float enemyCurrentHP;
 
-	// Use this for initialization
-	void Start ()
+    
+
+    private void Awake()
+    {
+        anim = transform.GetChild(0).GetComponent<Animator>();
+    }
+
+    // Use this for initialization
+    void Start ()
     {
         enemyCurrentHP = enemyMaxHP;
 	}
@@ -26,8 +34,14 @@ public class EnemyDamageScript : MonoBehaviour
 
     public void EnemyHPZero()
     {
-        GameObject.Destroy(gameObject);
-        transform.parent.GetComponent<EnemySpawnerScript>().RemoveEnemy();
+        StartCoroutine("EnemyDeath");
     }
 
+    IEnumerator EnemyDeath()
+    {
+        anim.SetTrigger("Die");
+        transform.parent.GetComponent<EnemySpawnerScript>().RemoveEnemy();
+        yield return new WaitForSeconds(1.0f);
+        GameObject.Destroy(gameObject);
+    }
 }

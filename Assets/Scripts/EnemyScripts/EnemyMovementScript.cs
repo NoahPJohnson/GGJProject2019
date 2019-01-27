@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyMovementScript : MonoBehaviour
 {
+    Animator anim;
     [SerializeField] float moveSpeed;
 
 
@@ -25,7 +26,10 @@ public class EnemyMovementScript : MonoBehaviour
 
     [SerializeField] Transform playerReference;
 
-
+    private void Awake()
+    {
+        anim = transform.GetChild(0).GetComponent<Animator>();
+    }
     // Use this for initialization
     void Start ()
     {
@@ -41,6 +45,14 @@ public class EnemyMovementScript : MonoBehaviour
             GetComponent<EnemyDamageScript>().EnemyHPZero();
         }
         guideVector = (playerReference.position - transform.position).normalized;
+        if (guideVector.magnitude > 0.1)
+        {
+            anim.SetBool("IsWalking", true);
+        }
+        else
+        {
+            anim.SetBool("IsWalking", false);
+        }
         moveVector.Set(guideVector.x * hCollision, guideVector.y * vCollision);
 
         enemyRigidbody.MovePosition(enemyRigidbody.position + ((Vector2)moveVector * moveSpeed) * Time.deltaTime);
