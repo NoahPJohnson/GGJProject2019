@@ -15,7 +15,7 @@ public class EnemyDamageScript : MonoBehaviour
 
     public void EnemyTakeDamage(float damageValue, float pushBack)
     {
-        GetComponent<Rigidbody2D>().AddForce(transform.up * -1 * pushBack);
+        GetComponent<Rigidbody2D>().AddForce(transform.GetChild(0).up * -1 * pushBack);
         enemyCurrentHP -= damageValue;
         if (enemyCurrentHP <= 0)
         {

@@ -38,6 +38,11 @@ public class RoomTriggerScript : MonoBehaviour {
         }
 	}
 
+    public void RoomExit()
+    {
+        enemySpawner.GetComponent<EnemySpawnerScript>().StopSpawning();
+    }
+
     public void RoomEnter()
     {
         roomActive = true;

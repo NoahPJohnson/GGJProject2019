@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyMovementScript : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
-    [SerializeField] float turnSpeed;
+
+
     Vector2 guideVector;
     float guideRotation;
 
@@ -23,24 +24,58 @@ public class EnemyMovementScript : MonoBehaviour
     Vector2 oldNormal;
 
     [SerializeField] Transform playerReference;
+
+
     // Use this for initialization
     void Start ()
     {
         playerReference = GameObject.FindGameObjectWithTag("Player").transform;
+        RandomizeEnemyStats();
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        guideVector = (transform.position - playerReference.position).normalized*-1;
-        //Debug.Log("Guide Vector: " + guideVector);
-        guideRotation = Mathf.Atan2(guideVector.x, guideVector.y)*Mathf.Rad2Deg;
-        //Debug.Log("From to Rotation = " + Quaternion.FromToRotation(Vector2.up, guideVector).eulerAngles);
-        //Debug.Log("Guide Rotation: " + guideRotation);
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0,0,-guideRotation), turnSpeed * Time.deltaTime);
+        guideVector = (playerReference.position - transform.position).normalized;
+        moveVector.Set(guideVector.x * hCollision, guideVector.y * vCollision);
 
-        enemyRigidbody.MovePosition(enemyRigidbody.position + ((Vector2)transform.up * moveSpeed) * Time.deltaTime);
-	}
+        enemyRigidbody.MovePosition(enemyRigidbody.position + ((Vector2)moveVector * moveSpeed) * Time.deltaTime);
+
+        if (hCollision == 0)
+        {
+            if (guideVector.x > 0 && oldNormal.x > 0)
+            {
+                hCollision = 1;
+            }
+            if (guideVector.x < 0 && oldNormal.x < 0)
+            {
+                hCollision = 1;
+            }
+            //Debug.Log("The input vector = " + inputVector);
+        }
+        if (vCollision == 0)
+        {
+            if (guideVector.y > 0 && oldNormal.y > 0)
+            {
+                vCollision = 1;
+            }
+            if (guideVector.y < 0 && oldNormal.y < 0)
+            {
+                vCollision = 1;
+            }
+        }
+    }
+
+    public Vector2 GetGuideVector()
+    {
+        return guideVector;
+    }
+
+    void RandomizeEnemyStats()
+    {
+        moveSpeed = Random.Range(4.0f, 6.5f);
+        transform.GetChild(0).GetComponent<EnemyRotationScript>().SetTurnSpeed((Random.Range(12.0f, 14.5f))*10);
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {

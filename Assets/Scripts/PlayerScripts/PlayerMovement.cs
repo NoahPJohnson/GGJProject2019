@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         //playerRigidbody.MovePosition(playerRigidbody.position + (new Vector2(0, -25)) * Time.deltaTime);
             //transform.Translate(moveVector * moveSpeed * Time.deltaTime);
 
-            if (hCollision == 0)
+        if (hCollision == 0)
         {
             if (inputVector.x > 0 && oldNormal.x > 0)
             {
@@ -119,6 +119,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (other.tag == "RoomTrigger")
+        {
+            other.GetComponent<RoomTriggerScript>().RoomExit();
+        }
         if (other.tag == "HomeTrigger")
         {
             venturing = true;
