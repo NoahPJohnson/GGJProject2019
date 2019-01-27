@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class UpgradeManagerScript : MonoBehaviour
 {
-    int weaponInterfaceCount = 10;
-    WeaponInterface[] UpgradeWeaponArray = new WeaponInterface[10];
+    int weaponInterfaceCount = 14;
+    WeaponInterface[] UpgradeWeaponArray = new WeaponInterface[14];
 
     // Use this for initialization
     void Start ()
@@ -20,6 +20,10 @@ public class UpgradeManagerScript : MonoBehaviour
         UpgradeWeaponArray[7] = new WeaponType8(); //Spread + Bounce Weapon
         UpgradeWeaponArray[8] = new WeaponType9(); //Bounce + Normal Weapon
         UpgradeWeaponArray[9] = new WeaponType10(); //Normal + Spread + Bounce Weapon
+        UpgradeWeaponArray[10] = new WeaponType11(); //Normal Weapon Lv 3 BROKE
+        UpgradeWeaponArray[11] = new WeaponType12(); //Normal Weapon Lv 3 WOKE
+        UpgradeWeaponArray[12] = new WeaponType13(); //Spread Weapon Lv 3 
+        UpgradeWeaponArray[13] = new WeaponType15(); //Bounce Weapon Lv 3 
     }
 
     public WeaponInterface GetUpgradeAt(int receivedIndex)
@@ -31,7 +35,7 @@ public class UpgradeManagerScript : MonoBehaviour
     {
         bool playerHasUpgrade = false;
         WeaponInterface upgradeToReturn = UpgradeWeaponArray[0];
-        for (int i  = 0; i < weaponInterfaceCount; i++)
+        for (int i = 0; i < weaponInterfaceCount; i++)
         {
             if (playerTempWeaponInterface == UpgradeWeaponArray[i])
             {
@@ -56,10 +60,25 @@ public class UpgradeManagerScript : MonoBehaviour
                     Debug.Log("Spread and Bounce. Result is Weapon type: 8");
                     upgradeToReturn = UpgradeWeaponArray[7];
                 }
-                else if (i > 5 && i < 9)
+                else if ((i == 6 && upgradeWeaponIndex == 2) || (i == 7 && upgradeWeaponIndex == 0) || (i == 8 && upgradeWeaponIndex == 1))
                 {
                     Debug.Log("Normal and Spread and Bounce. Result is Weapon type 10");
                     upgradeToReturn = UpgradeWeaponArray[9];
+                }
+                else if (i == 3 && upgradeWeaponIndex == 0)
+                {
+                    Debug.Log("THREE Normal Upgrades Acquired!");
+                    upgradeToReturn = UpgradeWeaponArray[11];
+                }
+                else if (i == 4 && upgradeWeaponIndex == 1)
+                {
+                    Debug.Log("3 spread Upgrades Acquired.");
+                    upgradeToReturn = UpgradeWeaponArray[12];
+                }
+                else if (i == 5 && upgradeWeaponIndex == 2)
+                {
+                    Debug.Log("Three BOUNCE Upgrades Acquired!!");
+                    upgradeToReturn = UpgradeWeaponArray[13];
                 }
             }
         }

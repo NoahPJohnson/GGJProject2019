@@ -19,4 +19,9 @@ public class UpgradeScript : MonoBehaviour
         //return transform.parent.GetComponent<UpgradeManagerScript>().GetUpgradeAt(index);
         return transform.parent.GetComponent<UpgradeManagerScript>().CalculateUpgrade(playerTWInterface, index);
     }
+
+    public int GetIndex()
+    {
+        return index;
+    }
 }

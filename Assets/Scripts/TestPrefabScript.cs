@@ -8,7 +8,7 @@ public class TestPrefabScript : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        testObject = (GameObject)Resources.Load("5x5 Prefab");
+        testObject = (GameObject)Resources.Load("HUD");
         GameObject.Instantiate(testObject);
     }
 	

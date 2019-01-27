@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] GameObject HUDReference;
+
     bool venturing = false;
 
     //Speed
@@ -69,6 +71,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public Transform GetWeapon()
+    {
+        return playerWeapon;
+    }
+
     public void PlayerRecoil(Vector2 recoilDirection, float recoilForce, bool weaponFiring)
     {
         playerRigidbody.MovePosition(playerRigidbody.position + (recoilDirection * recoilForce) * Time.deltaTime);
@@ -85,9 +92,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.tag == "Upgrade")
         {
+            HUDReference.GetComponent<PlayerHUDScript>().StackUpgrades(other.GetComponent<UpgradeScript>().GetIndex());
             playerWeapon.GetComponent<SpriteRenderer>().color = other.GetComponent<SpriteRenderer>().color;
             playerWeapon.GetComponent<WeaponScript>().SetTemporaryInterface(other.GetComponent<UpgradeScript>().GetUpgradeWeapon(playerWeapon.GetComponent<WeaponScript>().GetTempWeaponInterface()));
-            GameObject.Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
         }
         if (other.tag == "RoomTrigger")
         {
@@ -98,8 +106,13 @@ public class PlayerMovement : MonoBehaviour
             if (venturing == true)
             {
                 playerWeapon.GetComponent<WeaponScript>().SetInterface();
+                HUDReference.GetComponent<PlayerHUDScript>().ClearUpgrades();
             }
             venturing = false;
+            if (other.GetComponent<HomeTriggerScript>().GetDestination() == true)
+            {
+                other.GetComponent<HomeTriggerScript>().SwapDestinations();
+            }
         }
         if (other.tag == "Hitbox")
         {
@@ -126,6 +139,10 @@ public class PlayerMovement : MonoBehaviour
         if (other.tag == "HomeTrigger")
         {
             venturing = true;
+            if (GetComponent<PlayerDamageScript>().GetCurrentHP() <= 0)
+            {
+                GetComponent<PlayerDamageScript>().ResetHP();
+            }
         }
         if (other.tag == "Hitbox")
         {

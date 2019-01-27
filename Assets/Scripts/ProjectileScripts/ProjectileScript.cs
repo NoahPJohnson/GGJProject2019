@@ -17,7 +17,10 @@ public class ProjectileScript : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        SetInterface(transform.parent.GetComponent<WeaponScript>().GetProjectileInterface());
+        if (transform.parent.GetComponent<WeaponScript>() != null)
+        {
+            SetInterface(transform.parent.GetComponent<WeaponScript>().GetProjectileInterface());
+        }
         if (projectileInterface.GetProjectileStationary() == false)
         {
             transform.parent = null;
@@ -26,6 +29,7 @@ public class ProjectileScript : MonoBehaviour
         pSpeed = projectileInterface.GetProjectileSpeed();
         pRange = projectileInterface.GetProjectileRange();
         pDamage = projectileInterface.GetProjectileDamage();
+        timer = 0;
         //GetComponent<Rigidbody2D>().AddForce(Vector2.up * pSpeed);
 	}
 	
@@ -73,6 +77,15 @@ public class ProjectileScript : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0,0,(Mathf.Atan2(tempVector.y,tempVector.x)*Mathf.Rad2Deg)-90);
                 //Debug.Log("Transform Up After = " + transform.rotation.eulerAngles);
                 //transform.forward = Vector3.Scale(transform.forward, lockVector);
+            }
+            if (projectileInterface.GetProjectileSplit() == true)
+            {
+                GameObject subProjectile = (GameObject)Resources.Load("Projectile0");
+                subProjectile.GetComponent<ProjectileScript>().SetInterface(new ProjectileType2());
+                Quaternion subPRotation = Quaternion.Euler(0, 0, (Mathf.Atan2(other.contacts[0].normal.y, other.contacts[0].normal.x) * Mathf.Rad2Deg) - 90);
+                float rotationVariation = Random.Range(-45.0f, 45.0f);
+                GameObject.Instantiate(subProjectile, transform.position, subPRotation * Quaternion.Euler(0,0,rotationVariation), transform);
+                    
             }
         }
 

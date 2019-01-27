@@ -10,7 +10,7 @@ public class ProjectileType4 : ProjectileInterface
         this.projectileActive = true;
         this.projectileStationary = true;
         this.projectileSpeed = 0;
-        this.projectileRange = 3;
+        this.projectileRange = 2;
         this.projectileDamage = 40;
         this.projectilePushback = 500;
     }

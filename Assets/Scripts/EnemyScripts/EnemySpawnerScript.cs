@@ -34,7 +34,7 @@ public class EnemySpawnerScript : MonoBehaviour
             {
                 for (int j = 0; j < spawnCount; j++)
                 {
-                    Debug.Log("Spawn Enemy Index = " + j);
+                    //Debug.Log("Spawn Enemy Index = " + j);
                     SpawnedEnemies.Add(GameObject.Instantiate(enemyToSpawn, transform.GetChild(j).transform.position+new Vector3(i,i,0), transform.GetChild(j).transform.rotation, transform));
                 }
             }

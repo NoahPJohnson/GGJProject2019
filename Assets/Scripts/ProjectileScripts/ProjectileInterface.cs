@@ -6,6 +6,8 @@ public abstract class ProjectileInterface
     protected bool projectileActive;
     protected bool projectileBounce = false;
     protected bool projectileStationary = false;
+    protected bool projectileSplit = false;
+    protected bool subProjectile = false;
     protected int projectileBounces;
     protected float projectileSpeed;
     protected float projectileRange;
@@ -14,6 +16,8 @@ public abstract class ProjectileInterface
     public bool GetPRojectileActive() { return projectileActive; }
     public bool GetProjectileBounce() { return projectileBounce; }
     public bool GetProjectileStationary() { return projectileStationary; }
+    public bool GetProjectileSplit() { return projectileSplit; }
+    public bool GetProjectileSub() { return subProjectile; }
     public int GetProjectileBounces() { return projectileBounces; }
     public float GetProjectileSpeed() { return projectileSpeed; }
     public float GetProjectileRange() { return projectileRange; }

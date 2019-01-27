@@ -78,11 +78,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="GGJProject2019.Plugins.csproj">
+      <Project>{EA82D615-CCD3-A600-736E-4C7ADB5A5083}</Project>
+      <Name>GGJProject2019.Plugins</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\GoogleVR\Scripts\Audio\FmodGvrAudio.cs" />
+    <Compile Include="Assets\GoogleVR\Scripts\Audio\FmodGvrAudioRoom.cs" />
     <Compile Include="Assets\IsaacPackage\Scripts\MusicManager.cs" />
+    <Compile Include="Assets\ResonanceAudio\Scripts\FmodResonanceAudio.cs" />
+    <Compile Include="Assets\ResonanceAudio\Scripts\FmodResonanceAudioRoom.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\EnemyDamageScript.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\EnemyMovementScript.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\EnemyRotationScript.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\EnemySpawnerScript.cs" />
+    <Compile Include="Assets\Scripts\HomeTriggerScript.cs" />
+    <Compile Include="Assets\Scripts\MusicManagement.cs" />
+    <Compile Include="Assets\Scripts\PlayerHUDScript.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerDamageScript.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\PlayerScripts\PlayerRotationScript.cs" />
@@ -93,6 +106,9 @@
     <Compile Include="Assets\Scripts\ProjectileScripts\ProjectileType2.cs" />
     <Compile Include="Assets\Scripts\ProjectileScripts\ProjectileType3.cs" />
     <Compile Include="Assets\Scripts\ProjectileScripts\ProjectileType4.cs" />
+    <Compile Include="Assets\Scripts\ProjectileScripts\ProjectileType5.cs" />
+    <Compile Include="Assets\Scripts\ProjectileScripts\ProjectileType6.cs" />
+    <Compile Include="Assets\Scripts\ProjectileScripts\ProjectileType7.cs" />
     <Compile Include="Assets\Scripts\RoomTriggerScript.cs" />
     <Compile Include="Assets\Scripts\TestPrefabScript.cs" />
     <Compile Include="Assets\Scripts\UpgradeScripts\UpgradeInterface.cs" />
@@ -104,6 +120,11 @@
     <Compile Include="Assets\Scripts\WeaponScripts\WeaponType0.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\WeaponType1.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\WeaponType10.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\WeaponType11.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\WeaponType12.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\WeaponType13.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\WeaponType14.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\WeaponType15.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\WeaponType2.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\WeaponType3.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\WeaponType4.cs" />
@@ -112,6 +133,9 @@
     <Compile Include="Assets\Scripts\WeaponScripts\WeaponType7.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\WeaponType8.cs" />
     <Compile Include="Assets\Scripts\WeaponScripts\WeaponType9.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Plugins\FMOD\LICENSE.TXT" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

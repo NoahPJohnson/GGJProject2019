@@ -19,9 +19,15 @@ public class EnemyDamageScript : MonoBehaviour
         enemyCurrentHP -= damageValue;
         if (enemyCurrentHP <= 0)
         {
-            GameObject.Destroy(gameObject);
-            transform.parent.GetComponent<EnemySpawnerScript>().RemoveEnemy();
+            EnemyHPZero();
         }
         
     }
+
+    public void EnemyHPZero()
+    {
+        GameObject.Destroy(gameObject);
+        transform.parent.GetComponent<EnemySpawnerScript>().RemoveEnemy();
+    }
+
 }

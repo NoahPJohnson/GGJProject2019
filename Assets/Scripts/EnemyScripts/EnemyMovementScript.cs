@@ -36,6 +36,10 @@ public class EnemyMovementScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        if (playerReference.GetComponent<PlayerDamageScript>().GetCurrentHP() <= 0)
+        {
+            GetComponent<EnemyDamageScript>().EnemyHPZero();
+        }
         guideVector = (playerReference.position - transform.position).normalized;
         moveVector.Set(guideVector.x * hCollision, guideVector.y * vCollision);
 
@@ -75,6 +79,28 @@ public class EnemyMovementScript : MonoBehaviour
     {
         moveSpeed = Random.Range(4.0f, 6.5f);
         transform.GetChild(0).GetComponent<EnemyRotationScript>().SetTurnSpeed((Random.Range(12.0f, 14.5f))*10);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Projectile")
+        {
+            if (other.GetComponent<ProjectileScript>().GetProjectileInterface().GetProjectileStationary() == true)
+            {
+                GetComponent<EnemyDamageScript>().EnemyTakeDamage(other.gameObject.GetComponent<ProjectileScript>().GetProjectileInterface().GetProjectileDamage(), other.gameObject.GetComponent<ProjectileScript>().GetProjectileInterface().GetProjectilePushback());
+            }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag == "Projectile")
+        {
+            if (other.GetComponent<ProjectileScript>().GetProjectileInterface().GetProjectileStationary() == true)
+            {
+                GetComponent<EnemyDamageScript>().EnemyTakeDamage(other.gameObject.GetComponent<ProjectileScript>().GetProjectileInterface().GetProjectileDamage(), other.gameObject.GetComponent<ProjectileScript>().GetProjectileInterface().GetProjectilePushback());
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
