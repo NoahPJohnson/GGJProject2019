@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    bool venturing = false;
+
     //Speed
     [SerializeField] float moveSpeed;
     Vector2 inputVector;
@@ -84,12 +86,20 @@ public class PlayerMovement : MonoBehaviour
         if (other.tag == "Upgrade")
         {
             playerWeapon.GetComponent<SpriteRenderer>().color = other.GetComponent<SpriteRenderer>().color;
-            playerWeapon.GetComponent<WeaponScript>().SetInterface(other.GetComponent<UpgradeScript>().GetUpgradeWeapon());
+            playerWeapon.GetComponent<WeaponScript>().SetTemporaryInterface(other.GetComponent<UpgradeScript>().GetUpgradeWeapon(playerWeapon.GetComponent<WeaponScript>().GetTempWeaponInterface()));
             GameObject.Destroy(other.gameObject);
         }
         if (other.tag == "RoomTrigger")
         {
             other.GetComponent<RoomTriggerScript>().RoomEnter();
+        }
+        if (other.tag == "HomeTrigger")
+        {
+            if (venturing == true)
+            {
+                playerWeapon.GetComponent<WeaponScript>().SetInterface();
+            }
+            venturing = false;
         }
         if (other.tag == "Hitbox")
         {
@@ -109,6 +119,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (other.tag == "HomeTrigger")
+        {
+            venturing = true;
+        }
         if (other.tag == "Hitbox")
         {
             //Debug.Log("LEAVE.");

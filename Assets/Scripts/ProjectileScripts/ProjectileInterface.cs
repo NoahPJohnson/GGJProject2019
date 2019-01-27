@@ -4,11 +4,17 @@ using UnityEngine;
 public abstract class ProjectileInterface
 {
     protected bool projectileActive;
+    protected bool projectileBounce = false;
+    protected bool projectileStationary = false;
+    protected int projectileBounces;
     protected float projectileSpeed;
     protected float projectileRange;
     protected float projectileDamage;
     protected float projectilePushback;
     public bool GetPRojectileActive() { return projectileActive; }
+    public bool GetProjectileBounce() { return projectileBounce; }
+    public bool GetProjectileStationary() { return projectileStationary; }
+    public int GetProjectileBounces() { return projectileBounces; }
     public float GetProjectileSpeed() { return projectileSpeed; }
     public float GetProjectileRange() { return projectileRange; }
     public float GetProjectileDamage() { return projectileDamage; }

@@ -8,6 +8,8 @@ public class WeaponType0 : WeaponInterface
     {
         this.firingSpeed = 0.7f;
         this.recoil = 1000;
+        this.ammo = -1;
+        this.maxAmmo = ammo;
         this.projectile = (GameObject)Resources.Load("Projectile0");
         this.weaponProjectileInterface = new ProjectileType0();
     }

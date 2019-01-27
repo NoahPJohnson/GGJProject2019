@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeaponScript : MonoBehaviour
 {
     [SerializeField] Rigidbody2D player;
+    [SerializeField] WeaponInterface tempWeaponInterface;
     [SerializeField] WeaponInterface weaponInterface;
 
     Coroutine shootCoroutine = null;
@@ -17,7 +18,8 @@ public class WeaponScript : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        SetInterface(new WeaponType0());
+        tempWeaponInterface = null;
+        SetDefaultWeaponInterface();
         firing = false;
         weaponFiringSpeed = weaponInterface.GetFiringSpeed();
         //Debug.Log("Firing Speed = " + weaponFiringSpeed);
@@ -34,10 +36,30 @@ public class WeaponScript : MonoBehaviour
         }
 	}
 
-    public void SetInterface(WeaponInterface wInterface)
+    public void SetDefaultWeaponInterface()
     {
-        weaponInterface = wInterface;
-        weaponFiringSpeed = weaponInterface.GetFiringSpeed();
+        weaponInterface = new WeaponType0();
+    }
+
+    public void SetTemporaryInterface(WeaponInterface wInterface)
+    {
+        tempWeaponInterface = wInterface;
+    }
+
+    public void SetInterface()
+    {
+        if (tempWeaponInterface != null)
+        {
+            weaponInterface = tempWeaponInterface;
+            weaponFiringSpeed = weaponInterface.GetFiringSpeed();
+            weaponInterface.Reload();
+            tempWeaponInterface = null;
+        }
+    }
+
+    public WeaponInterface GetTempWeaponInterface()
+    {
+        return tempWeaponInterface;
     }
 
     public ProjectileInterface GetProjectileInterface()
@@ -50,6 +72,10 @@ public class WeaponScript : MonoBehaviour
         
         player.AddForce(transform.up * -1 * weaponInterface.GetRecoil());
         weaponInterface.Shoot(transform);
+        if (weaponInterface.GetAmmo() == 0)
+        {
+            SetDefaultWeaponInterface();
+        }
         yield return new WaitForSeconds(weaponFiringSpeed);
         firing = false;
     }

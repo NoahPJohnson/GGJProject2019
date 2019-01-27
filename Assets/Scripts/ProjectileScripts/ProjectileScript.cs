@@ -18,7 +18,10 @@ public class ProjectileScript : MonoBehaviour
 	void Start ()
     {
         SetInterface(transform.parent.GetComponent<WeaponScript>().GetProjectileInterface());
-        transform.parent = null;
+        if (projectileInterface.GetProjectileStationary() == false)
+        {
+            transform.parent = null;
+        }
         projectileInterface.CreateProjectile();
         pSpeed = projectileInterface.GetProjectileSpeed();
         pRange = projectileInterface.GetProjectileRange();
@@ -29,8 +32,10 @@ public class ProjectileScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        transform.Translate(Vector2.up * pSpeed * Time.deltaTime);
-
+        if (projectileInterface.GetProjectileStationary() == false)
+        {
+            transform.Translate(Vector2.up * pSpeed * Time.deltaTime);
+        }
         if (projectileInterface.GetPRojectileActive() == false)
         {
             //Debug.Log("Active is False");
@@ -60,6 +65,15 @@ public class ProjectileScript : MonoBehaviour
         if (other.collider.tag == "Wall")
         {
             projectileInterface.WallHit();
+            if (projectileInterface.GetProjectileBounce() == true)
+            {
+                //Debug.Log("Bounce off wall!");
+                //Debug.Log("Transform Up Before = " + transform.rotation.eulerAngles);
+                Vector2 tempVector = Vector2.Reflect((transform.rotation * Vector2.up), other.contacts[0].normal);
+                transform.rotation = Quaternion.Euler(0,0,(Mathf.Atan2(tempVector.y,tempVector.x)*Mathf.Rad2Deg)-90);
+                //Debug.Log("Transform Up After = " + transform.rotation.eulerAngles);
+                //transform.forward = Vector3.Scale(transform.forward, lockVector);
+            }
         }
 
     }

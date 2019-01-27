@@ -78,24 +78,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\EnemyDamageScript.cs" />
-    <Compile Include="Assets\Scripts\EnemyMovementScript.cs" />
-    <Compile Include="Assets\Scripts\EnemySpawnerScript.cs" />
-    <Compile Include="Assets\Scripts\PlayerDamageScript.cs" />
-    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
-    <Compile Include="Assets\Scripts\PlayerRotationScript.cs" />
-    <Compile Include="Assets\Scripts\ProjectileInterface.cs" />
-    <Compile Include="Assets\Scripts\ProjectileScript.cs" />
-    <Compile Include="Assets\Scripts\ProjectileType0.cs" />
-    <Compile Include="Assets\Scripts\ProjectileType1.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\EnemyDamageScript.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\EnemyMovementScript.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\EnemySpawnerScript.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\PlayerDamageScript.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\PlayerScripts\PlayerRotationScript.cs" />
+    <Compile Include="Assets\Scripts\ProjectileScripts\ProjectileInterface.cs" />
+    <Compile Include="Assets\Scripts\ProjectileScripts\ProjectileScript.cs" />
+    <Compile Include="Assets\Scripts\ProjectileScripts\ProjectileType0.cs" />
+    <Compile Include="Assets\Scripts\ProjectileScripts\ProjectileType1.cs" />
+    <Compile Include="Assets\Scripts\ProjectileScripts\ProjectileType2.cs" />
+    <Compile Include="Assets\Scripts\ProjectileScripts\ProjectileType3.cs" />
+    <Compile Include="Assets\Scripts\ProjectileScripts\ProjectileType4.cs" />
     <Compile Include="Assets\Scripts\RoomTriggerScript.cs" />
-    <Compile Include="Assets\Scripts\UpgradeInterface.cs" />
-    <Compile Include="Assets\Scripts\UpgradeScript.cs" />
-    <Compile Include="Assets\Scripts\UpgradeType1.cs" />
-    <Compile Include="Assets\Scripts\WeaponInterface.cs" />
-    <Compile Include="Assets\Scripts\WeaponScript.cs" />
-    <Compile Include="Assets\Scripts\WeaponType0.cs" />
-    <Compile Include="Assets\Scripts\WeaponType1.cs" />
+    <Compile Include="Assets\Scripts\UpgradeScripts\UpgradeInterface.cs" />
+    <Compile Include="Assets\Scripts\UpgradeScripts\UpgradeManagerScript.cs" />
+    <Compile Include="Assets\Scripts\UpgradeScripts\UpgradeScript.cs" />
+    <Compile Include="Assets\Scripts\UpgradeScripts\UpgradeType1.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\WeaponInterface.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\WeaponScript.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\WeaponType0.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\WeaponType1.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\WeaponType10.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\WeaponType2.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\WeaponType3.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\WeaponType4.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\WeaponType5.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\WeaponType6.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\WeaponType7.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\WeaponType8.cs" />
+    <Compile Include="Assets\Scripts\WeaponScripts\WeaponType9.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
